@@ -10,7 +10,8 @@ class InfoMessage:
         duration Union[int, float]: длительность тренировки в часах.
         distance Union[int, float]: дистанция в километрах, которую преодолел
             пользователь за время тренировки.
-        speed Union[int, float]: средняя скорость, с которой двигался пользователь.
+        speed Union[int, float]: средняя скорость, с которой
+            двигался пользователь.
         calories Union[int, float] количество килокалорий, которое израсходовал
             пользователь за время тренировки.
     """
@@ -55,7 +56,7 @@ class Training:
             action (int): количество совершенных действий шагов/гребков
             duration Union[int, float]: длительность тренировки  в минутах
             weight Union[int, float]: вес спортсмена
-        Returns: 
+        Returns:
             None
         """
         self.action = action
@@ -65,21 +66,22 @@ class Training:
     def get_distance(self) -> float:
         """Получить дистанцию в км.
         Returns:
-            float: дистанцию в км       
+            float: дистанцию в км.
         """
         return self.action * self.LEN_STEP / self.M_IN_KM
 
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения.
         Returns:
-               float: средняя скорость.        
+               float: средняя скорость.
         """
         return self.get_distance() / self.duration
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий.
         Raises:
-            NotImplementedError: если метод не переопредел, после вызова кидаем исключение
+            NotImplementedError: если метод не переопредел,
+                после вызова кидаем исключение
         """
         # Установим заглушку так как для каждого вида спорта
         # подсчет колорий свой.
@@ -137,7 +139,7 @@ class SportsWalking(Training):
             duration Union[int, float]: длительность тренировки  в минутах
             weight Union[int, float]: вес спортсмена
             height Union[int, float]: рост спортсмена
-        Returns: 
+        Returns:
             None
         """
         super().__init__(action, duration, weight)
@@ -150,7 +152,7 @@ class SportsWalking(Training):
         """
         return ((self.COEFF_CALORIE_1 * self.weight
                 + (self.get_mean_speed() ** 2
-                // self.height) * self.COEFF_CALORIE_2
+                 // self.height) * self.COEFF_CALORIE_2
                 * self.weight) * (self.duration
                 * self.MINUTES_IN_HOUR))
 
@@ -179,8 +181,9 @@ class Swimming(Training):
             duration Union[int, float]: длительность тренировки  в минутах
             weight Union[int, float]: вес спортсмена
             length_pool Union[int, float]: длина бассейна в метрах
-            count_pool (Union[int, float]: сколько раз пользователь переплыл бассейн
-        Returns: 
+            count_pool (Union[int, float]: сколько раз
+                пользователь переплыл бассейн
+        Returns:
             None
         """
         super().__init__(action, duration, weight)
