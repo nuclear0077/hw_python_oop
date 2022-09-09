@@ -83,9 +83,7 @@ class Training:
             NotImplementedError: если метод не переопредел,
                 после вызова кидаем исключение
         """
-        # Установим заглушку так как для каждого вида спорта
-        # подсчет колорий свой.
-        raise NotImplementedError
+        raise NotImplementedError("Метод должен быть переопределен")
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке.
@@ -161,9 +159,9 @@ class Swimming(Training):
     """Тренировка: плавание.
         Args:
         LEN_STEP (float): расстояние, которое
-            спортсмен преодолевает за один гребок.
-            COEFF_CALORIE_1 Union[int,float]: коэффициент для расчета калорий.
-            COEFF_CALORIE_2 Union[int,float]: коэффициент для расчета калорий.
+        спортсмен преодолевает за один гребок.
+        COEFF_CALORIE_1 Union[int,float]: коэффициент для расчета калорий.
+        COEFF_CALORIE_2 Union[int,float]: коэффициент для расчета калорий.
     """
     COEFF_CALORIE_1: ClassVar[Union[int, float]] = 1.1
     COEFF_CALORIE_2: ClassVar[Union[int, float]] = 2.0
@@ -215,7 +213,6 @@ def read_package(workout_type: str, data: List[int]) -> Training:
         Returns:
             Training: класс вида тренировки
     """
-    # Создадим словарь в формате ключ, тренировка: класс вида тренировки
     trening_matching: Dict[str, Type[Training]] = {'SWM': Swimming,
                                                    'RUN': Running,
                                                    'WLK': SportsWalking}
